@@ -1,5 +1,7 @@
 # Personal Business Card Flask Application | Веб-приложение для персональной визитки
 
+[![Tests](https://github.com/IsDarkByte/FlaskProjectPersonalBusinessCard2/actions/workflows/python-app.yml/badge.svg)](https://github.com/IsDarkByte/FlaskProjectPersonalBusinessCard2/actions/workflows/python-app.yml)
+
 [English](#english) | [Русский](#russian)
 
 <a name="english"></a>
