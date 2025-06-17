@@ -15,7 +15,7 @@ A modern web application built with Flask that serves as a personal business car
 - User authentication system
 - RESTful API endpoints
 - Automated testing with pytest
-- Code quality checks with flake8
+- Code quality checks with ruff
 
 ### Tech Stack
 
@@ -23,13 +23,13 @@ A modern web application built with Flask that serves as a personal business car
 - **Database**: SQLAlchemy
 - **Frontend**: HTML, CSS, JavaScript
 - **Testing**: pytest
-- **Code Quality**: flake8
+- **Code Quality**: ruff
 - **CI/CD**: GitHub Actions
 
 ### Prerequisites
 
 - Python 3.11 or higher
-- pip (Python package manager)
+- uv (universal Python package/dependency manager)
 - Git
 
 ### Installation
@@ -51,12 +51,19 @@ python3 -m venv .venv
 source .venv/bin/activate
 ```
 
-3. Install dependencies:
+3. Install uv (if not installed):
 ```bash
-pip install -r requirements.txt
+pip install uv  # or: pipx install uv
 ```
 
-4. Create `.env` file in the root directory with the following content:
+4. Install dependencies:
+```bash
+uv pip install  # uses pyproject.toml
+# or, if you prefer:
+uv pip install -r requirements.txt
+```
+
+5. Create `.env` file in the root directory with the following content:
 ```
 FLASK_APP=run.py
 FLASK_ENV=development
@@ -65,7 +72,7 @@ SECRET_KEY=your-secret-key-here
 DATABASE_URL=sqlite:///app.db
 ```
 
-5. Initialize the database:
+6. Initialize the database:
 ```bash
 flask db init
 flask db migrate
@@ -85,6 +92,17 @@ flask run
 
 ```bash
 pytest
+```
+
+### Running Linting (ruff)
+
+To check code quality and style using ruff, run:
+```bash
+ruff check .
+```
+You can also auto-fix some issues with:
+```bash
+ruff check . --fix
 ```
 
 ### Project Structure
@@ -141,7 +159,7 @@ Project Link: [https://github.com/IsDarkByte/FlaskProjectPersonalBusinessCard2](
 - Система аутентификации пользователей
 - RESTful API endpoints
 - Автоматизированное тестирование с pytest
-- Проверка качества кода с flake8
+- Проверка качества кода с ruff
 
 ### Технологический стек
 
@@ -149,13 +167,13 @@ Project Link: [https://github.com/IsDarkByte/FlaskProjectPersonalBusinessCard2](
 - **База данных**: SQLAlchemy
 - **Фронтенд**: HTML, CSS, JavaScript
 - **Тестирование**: pytest
-- **Качество кода**: flake8
+- **Качество кода**: ruff
 - **CI/CD**: GitHub Actions
 
 ### Требования
 
 - Python 3.11 или выше
-- pip (менеджер пакетов Python)
+- uv (универсальный менеджер зависимостей Python)
 - Git
 
 ### Установка
@@ -177,12 +195,19 @@ python3 -m venv .venv
 source .venv/bin/activate
 ```
 
-3. Установите зависимости:
+3. Установите uv (если не установлен):
 ```bash
-pip install -r requirements.txt
+pip install uv  # или: pipx install uv
 ```
 
-4. Создайте файл `.env` в корневой директории со следующим содержимым:
+4. Установите зависимости:
+```bash
+uv pip install  # используется pyproject.toml
+# или, если нужно:
+uv pip install -r requirements.txt
+```
+
+5. Создайте файл `.env` в корневой директории со следующим содержимым:
 ```
 FLASK_APP=run.py
 FLASK_ENV=development
@@ -191,63 +216,76 @@ SECRET_KEY=your-secret-key-here
 DATABASE_URL=sqlite:///app.db
 ```
 
-5. Инициализируйте базу данных:
+6. Инициализируйте базу данных:
 ```bash
 flask db init
 flask db migrate
 flask db upgrade
 ```
 
-### Запуск приложения
+### Running the Application
 
-1. Запустите сервер разработки:
+1. Start the development server:
 ```bash
 flask run
 ```
 
-2. Откройте браузер и перейдите по адресу `http://localhost:5000`
+2. Open your browser and navigate to `http://localhost:5000`
 
-### Запуск тестов
+### Running Tests
 
 ```bash
 pytest
 ```
 
-### Структура проекта
+### Запуск линтинга (ruff)
+
+Для проверки качества и стиля кода с помощью ruff выполните:
+```bash
+ruff check .
+```
+Также можно автоматически исправить некоторые ошибки:
+```bash
+ruff check . --fix
+```
+
+### Project Structure
 
 ```
 FlaskProjectPersonalBusinessCard2/
 ├── .github/
-│   └── workflows/          # Конфигурация GitHub Actions
+│   └── workflows/          # GitHub Actions configuration
 ├── app/
-│   ├── main/              # Основной blueprint приложения
-│   ├── static/            # Статические файлы (CSS, JS, изображения)
-│   ├── templates/         # HTML шаблоны
-│   └── __init__.py        # Фабрика приложения
-├── tests/                 # Файлы тестов
-├── .env                   # Переменные окружения
-├── .gitignore            # Файл игнорирования Git
-├── config.py             # Конфигурация
-├── LICENSE               # Лицензия MIT
-├── README.md             # Этот файл
-├── requirements.txt      # Зависимости проекта
-└── run.py               # Точка входа в приложение
+│   ├── main/              # Main application blueprint
+│   ├── static/            # Static files (CSS, JS, images)
+│   ├── templates/         # HTML templates
+│   └── __init__.py        # Application factory
+├── tests/                 # Test files
+├── .env                   # Environment variables
+├── .gitignore            # Git ignore file
+├── config.py             # Configuration
+├── LICENSE               # MIT License
+├── README.md             # This file
+├── requirements.txt      # Project dependencies
+└── run.py               # Application entry point
 ```
 
-### Участие в разработке
+### Contributing
 
-1. Форкните репозиторий
-2. Создайте ветку для вашей функции (`git checkout -b feature/AmazingFeature`)
-3. Зафиксируйте ваши изменения (`git commit -m 'Add some AmazingFeature'`)
-4. Отправьте изменения в ветку (`git push origin feature/AmazingFeature`)
-5. Откройте Pull Request
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-### Лицензия
+### License
 
-Этот проект лицензирован под MIT License - подробности в файле [LICENSE](LICENSE).
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-### Контакты
+### Contact
 
 IsDarkByte - [@IsDarkByte](https://github.com/IsDarkByte)
 
-Ссылка на проект: [https://github.com/IsDarkByte/FlaskProjectPersonalBusinessCard2](https://github.com/IsDarkByte/FlaskProjectPersonalBusinessCard2) 
+Project Link: [https://github.com/IsDarkByte/FlaskProjectPersonalBusinessCard2](https://github.com/IsDarkByte/FlaskProjectPersonalBusinessCard2)
+
+---

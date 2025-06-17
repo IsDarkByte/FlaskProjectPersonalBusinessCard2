@@ -6,6 +6,7 @@ from config import Config
 db = SQLAlchemy()
 migrate = Migrate()
 
+
 def create_app(config_class=Config):
     app = Flask(__name__)
     app.config.from_object(config_class)
@@ -15,10 +16,13 @@ def create_app(config_class=Config):
 
     from app.main import bp as main_bp
     app.register_blueprint(main_bp)
+    print("Main blueprint registered")
 
     from app.auth import bp as auth_bp
-    app.register_blueprint(auth_bp, url_prefix='/auth')
+    from app.auth import routes  # noqa: F401 импортируем маршруты до регистрации blueprint
+    app.register_blueprint(auth_bp, url_prefix="/auth")
 
     return app
 
-from app import models 
+
+
