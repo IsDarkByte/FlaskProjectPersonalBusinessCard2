@@ -22,6 +22,9 @@ def create_app(config_class=Config):
     from app.auth import routes  # noqa: F401 импортируем маршруты до регистрации blueprint
     app.register_blueprint(auth_bp, url_prefix="/auth")
 
+    # Импортируем модели после создания приложения
+    from app import models  # noqa: F401
+
     return app
 
 
