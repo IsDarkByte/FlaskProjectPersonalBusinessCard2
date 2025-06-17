@@ -37,6 +37,7 @@ jobs:
       run: |
         curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
         python get-pip.py
+        rm get-pip.py
 
     - name: Install dependencies
       run: |
@@ -49,4 +50,4 @@ jobs:
         
     - name: Lint with ruff
       run: |
-        ruff check . 
+        ruff check . --exclude get-pip.py 
