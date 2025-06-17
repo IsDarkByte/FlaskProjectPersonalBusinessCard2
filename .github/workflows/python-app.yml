@@ -22,18 +22,22 @@ jobs:
       run: |
         pip install uv
 
-    - name: Create virtual environment
+    - name: Create and activate virtual environment
       run: |
         uv venv
+        echo "VIRTUAL_ENV=$PWD/.venv" >> $GITHUB_ENV
+        echo "$PWD/.venv/bin" >> $GITHUB_PATH
 
-    - name: Activate virtual environment
+    - name: Verify virtual environment
       run: |
-        source .venv/bin/activate
+        which python
+        python -V
+        pip list
 
     - name: Install dependencies
       run: |
-        uv pip install -r requirements.txt
-        uv pip install pytest pytest-cov ruff
+        python -m pip install -r requirements.txt
+        python -m pip install pytest pytest-cov ruff
         
     - name: Run tests
       run: |
