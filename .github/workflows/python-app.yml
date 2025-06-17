@@ -32,7 +32,11 @@ jobs:
       run: |
         which python
         python -V
-        pip list
+
+    - name: Install pip in virtual environment
+      run: |
+        curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+        python get-pip.py
 
     - name: Install dependencies
       run: |
