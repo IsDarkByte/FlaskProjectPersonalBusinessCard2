@@ -24,9 +24,7 @@ jobs:
 
     - name: Install dependencies
       run: |
-        uv pip install
-        # or, if you want to use requirements.txt:
-        # uv pip install -r requirements.txt
+        uv pip install -r requirements.txt
         
     - name: Run tests
       run: |
